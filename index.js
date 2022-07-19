@@ -5,7 +5,7 @@ const Engineer = require("./lib/Engineer")
 const Intern = require("./lib/Intern")
 
 const generateHTML = require("./src/generateHTML")
-const managerCard = require("./src/managerHtml")
+const managerCard = require("./src/managerHTML")
 const engineerCard = require("./src/engineerHTML")
 const internCard = require("./src/internHTML")
 
@@ -51,9 +51,14 @@ const engineerQuestions = [
     },
     {
         type: "input",
-        message: "What is the engineer's GitHub?",
+        message: "What is the engineer's GitHub username?",
         name: "engineerGitHub"
     },
+    {
+        type: "input",
+        message: "What is the engineer's GitHub link?",
+        name: "engineerLink"
+    }
 ]
 
 const internQuestions = [
@@ -135,8 +140,9 @@ function addEngineer() {
         .then(response => {
             const engineer = new Engineer(response.engineerName,
                 response.engineerId,
-                response.emgineerEmail,
-                response.engineerGitHub
+                response.engineerEmail,
+                response.engineerGitHub,
+                response.engineerLink
             )
 
             employeeArray.push(engineer)
@@ -176,7 +182,7 @@ function createHTML() {
             cards = cards + internCard(employeeArray[i])
         }
     }
-    fs.writeFileSync("./dist/team.html", generateHTML(cards))
+    fs.writeFileSync("./output/team.html", generateHTML(cards))
 
 }
 

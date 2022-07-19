@@ -2,12 +2,13 @@ const Engineer = require("../lib/Engineer")
 describe("Engineer", () => {
     describe("test Engineer's properties", () => {
         it("test all properties", () => {
-            const engineer = new Engineer('Bob', 1, 'bob@fakemail.com', 'bobsrepos')
+            const engineer = new Engineer('Bob', 1, 'bob@fakemail.com', 'bobsrepos', 'www.google.com')
 
             expect(engineer.name).toEqual('Bob')
             expect(engineer.id).toEqual(1)
             expect(engineer.email).toEqual('bob@fakemail.com')
             expect(engineer.gitHub).toEqual('bobsrepos')
+            expect(engineer.link).toEqual('www.google.com')
 
         })
 
