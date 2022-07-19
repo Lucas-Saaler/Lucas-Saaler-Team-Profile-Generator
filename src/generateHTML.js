@@ -1,3 +1,4 @@
+// Generates html file using all of the other cards put together
 function generateHTML(cards){
     return `<!DOCTYPE html>
     <html lang="en">

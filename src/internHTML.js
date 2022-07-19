@@ -1,3 +1,4 @@
+// Generates a card for the HTML based on Intern inputs
 function internHtml(intern){
     return `  <div class="col-sm-4 my-3">
     <div class="card">

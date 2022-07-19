@@ -1,14 +1,15 @@
+// Libraries
 const inquirer = require("inquirer")
 const fs = require("fs")
 const Manager = require("./lib/Manager")
 const Engineer = require("./lib/Engineer")
 const Intern = require("./lib/Intern")
-
 const generateHTML = require("./src/generateHTML")
 const managerCard = require("./src/managerHTML")
 const engineerCard = require("./src/engineerHTML")
 const internCard = require("./src/internHTML")
 
+// Inquirer questions
 const employeeArray = []
 const managerQuestions = [
     {
@@ -84,6 +85,7 @@ const internQuestions = [
     },
 ]
 
+// Called when node index is run. Questions about manager
 function init() {
     inquirer
         .prompt(managerQuestions)
@@ -93,13 +95,14 @@ function init() {
                 response.managerEmail,
                 response.managerOfficeNumber
             )
-
+            // Adds to employee array
             employeeArray.push(manager)
-
+            // Move on to next generation
             confirmNext()
         })
 }
 
+// Checks if the user wants to add more employees
 function confirmNext() {
     inquirer.prompt([{
         type: "confirm",
@@ -111,10 +114,13 @@ function confirmNext() {
                 addEmployee()
             }
             else {
+                // Will finish the program and generate the HTML
                 createHTML()
             }
         })
 }
+
+// Choose an employee type or cancel
 function addEmployee() {
     inquirer.prompt([{
         type: "list",
@@ -129,11 +135,13 @@ function addEmployee() {
             else if (response.selection === "Intern") {
                 addIntern()
             }else{
+                // If cancel is selected, HTML is generated, and program finishes
                 createHTML()
             }
         })
 }
 
+// Asks questions about engineer
 function addEngineer() {
     inquirer
         .prompt(engineerQuestions)
@@ -145,12 +153,15 @@ function addEngineer() {
                 response.engineerLink
             )
 
+            // Pushes to employee array
             employeeArray.push(engineer)
 
+            // Continue to next generation
             confirmNext()
         })
 }
 
+// Asks questions about the intern
 function addIntern() {
     inquirer
         .prompt(internQuestions)
@@ -161,17 +172,20 @@ function addIntern() {
                 response.internSchool
             )
 
+            // Pushes to employee array
             employeeArray.push(intern)
 
+            // Continue to next generation
             confirmNext()
         })
 }
 
+// Creates HTML file
 function createHTML() {
-    console.log(employeeArray)
-
+    // Will be populated by array
     let cards = ""
 
+    // Check roles, add card based on role
     for (let i = 0; i < employeeArray.length; i++) {
         if (employeeArray[i].getRole() === "Manager") {
             cards = cards + managerCard(employeeArray[i])
@@ -182,8 +196,10 @@ function createHTML() {
             cards = cards + internCard(employeeArray[i])
         }
     }
+    // Creates the HTML
     fs.writeFileSync("./output/team.html", generateHTML(cards))
 
 }
 
+// Called with node index
 init()

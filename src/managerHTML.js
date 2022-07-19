@@ -1,3 +1,4 @@
+// Generates a card for the HTML based on Manager inputs
 function manageHtml(manager){
     return `  <div class="col-sm-4 my-3">
     <div class="card">
