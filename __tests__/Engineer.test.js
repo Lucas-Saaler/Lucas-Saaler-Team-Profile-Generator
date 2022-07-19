@@ -16,7 +16,7 @@ describe("Engineer", () => {
 
     describe("test Engineer's methods", () => {
         it("test all methods", () => {
-            const engineer = new Engineer('Jeff', 2, 'jeff@fakemail.com', 'bobsrepos')
+            const engineer = new Engineer('Jeff', 2, 'jeff@fakemail.com', 'bobsrepos', 'www.google.com')
             expect(engineer.getName()).toEqual('Jeff')
             expect(engineer.getId()).toEqual(2)
             expect(engineer.getEmail()).toEqual('jeff@fakemail.com')
