@@ -4,7 +4,7 @@
 
 This application will allow the user to generate a website that displays the profiles of employees on their team.
 
-## Table of Contents (Optional)
+## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
